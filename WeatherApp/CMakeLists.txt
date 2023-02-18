@@ -9,8 +9,11 @@ find_package(Qt6 6.4 COMPONENTS Quick REQUIRED)
 
 find_package(Qt6 REQUIRED COMPONENTS Charts)
 qt_add_executable(appWeatherApp "")
+
 add_subdirectory(src)
 add_subdirectory(BackEnd)
+add_subdirectory(common)
+
 qt_add_qml_module(appWeatherApp
     URI WeatherApp
     VERSION 1.0
@@ -27,8 +30,10 @@ set_target_properties(appWeatherApp PROPERTIES
 
 target_link_libraries(appWeatherApp
     PRIVATE
-    Qt6::Quick
-    Qt6::Charts
+        Qt6::Quick
+        Qt6::Charts
+        BackEnd
+        common
 )
 
 install(TARGETS appWeatherApp

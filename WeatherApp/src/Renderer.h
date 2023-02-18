@@ -1,5 +1,5 @@
-#ifndef BackEndMgr_HEADER
-#define BackEndMgr_HEADER
+#ifndef Renderer_HEADER
+#define Renderer_HEADER
 
 
 #include <QObject>
@@ -10,18 +10,17 @@ class BackEnd;
 class IResponse;
 class IMessage;
 
-class BackEndMgr : public QObject
+class Renderer : public QObject
 {
     Q_OBJECT
 
 public:
-    BackEndMgr(WeatherChartItem* pWeatherChartItem,QObject *parent = nullptr);
-    ~BackEndMgr();
+    Renderer(WeatherChartItem* pWeatherChartItem,QObject *parent = nullptr);
+    ~Renderer();
     void setReqMsg(const QString& msg);
-    void updateData();
 
 private:
-    WeatherChartItem* m_ppWeatherChartItem;
+    WeatherChartItem* m_pWeatherChartItem =nullptr;
     std::shared_ptr<BackEnd> m_pBackEnd = nullptr;
     std::shared_ptr<IResponse> m_pResponse = nullptr;
 

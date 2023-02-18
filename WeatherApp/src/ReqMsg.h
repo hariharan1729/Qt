@@ -16,6 +16,7 @@ public:
     const QStringList& getTemperatureMessage() override{return {};}
 
     const QStringList& getTimeMessage() override{return {};}
+    const int getMsgType() override{return -1;}
 
     virtual const QString& getReqMsg() {return m_msg;}
 
