@@ -16,12 +16,6 @@ int main(int argc, char *argv[])
 
          const QUrl url(u"qrc:/WeatherApp/qml/"
                         "main.qml"_qs);
-//       auto rootItem = view.rootObject();
-//       auto *pcustomChartItem = rootItem->findChild<WeatherChartItem*>("customChartItem");
-//       if(nullptr != pcustomChartItem)
-//       {
-
-//       }
 
      view.setSource(url);
      view.show();

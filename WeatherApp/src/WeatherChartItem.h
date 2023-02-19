@@ -13,7 +13,7 @@ class IMessage;
 class QAbstractAxis;
 class QChart;
 class QDateTimeAxis;
-class QCategoryAxis;
+class QValueAxis;
 
 class WeatherChartItem : public QQuickItem
 {
@@ -25,6 +25,7 @@ public:
     ~WeatherChartItem();
 
     Q_INVOKABLE void update_chart(QQuickItem *item);
+    Q_INVOKABLE void sendReq(const QString& cityName);
     Q_INVOKABLE void update_axes(QAbstractAxis *axisX, QAbstractAxis *axisY);
 
 
@@ -33,7 +34,7 @@ public:
 private:
     QChart* m_cv = nullptr;
     QDateTimeAxis *m_pAxisX= nullptr;
-    QCategoryAxis *m_pAxisY= nullptr;
+    QValueAxis  *m_pAxisY= nullptr;
     int m_amountOfDXData =30;
     std::unique_ptr<Renderer> m_pRenderer = nullptr;
     std::shared_ptr<IMessage> m_pMessage=nullptr;

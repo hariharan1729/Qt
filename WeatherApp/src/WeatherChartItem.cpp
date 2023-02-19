@@ -12,71 +12,30 @@
 #include <QObject>
 #include <QCategoryAxis>
 #include "Message.h"
+#include <QValueAxis>
 
 //const QString tem = "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::multipointcoverage&place=helsinki&parameters=Temperature&starttime=2023-02-14T06:00:00Z&endtime=2023-02-15T11:00:00Z";
-const QString tem = "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::multipointcoverage&place=helsinki&parameters=Temperature";
-QVector<int> m_data={10,20,15,8,80};
-QVector<QString> m_timeData = {"1676682000",
-                               "1676685600",
-                               "1676689200",
-                               "1676692800",
-                               "1676696400",
-                               "1676700000",
-                               "1676703600",
-                               "1676707200",
-                               "1676710800",
-                               "1676714400",
-                               "1676718000",
-                               "1676721600",
-                               "1676725200",
-                               "1676728800",
-                               "1676732400",
-                               "1676736000",
-                               "1676739600",
-                               "1676743200",
-                               "1676746800",
-                               "1676750400",
-                               "1676754000",
-                               "1676757600",
-                               "1676761200",
-                               "1676764800",
-                               "1676768400",
-                               "1676772000",
-                               "1676775600",
-                               "1676779200",
-                               "1676782800",
-                               "1676786400",
-                               "1676790000",
-                               "1676793600",
-                               "1676797200",
-                               "1676800800",
-                               "1676804400",
-                               "1676808000",
-                               "1676811600",
-                               "1676815200",
-                               "1676818800",
-                               "1676822400",
-                               "1676826000",
-                               "1676829600",
-                               "1676833200",
-                               "1676836800",
-                               "1676840400",
-                               "1676844000",
-                               "1676847600",
-                               "1676851200",
-                               "1676854800",
-                               "1676858400"};
+//const QString tem = "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::multipointcoverage&place=helsinki&parameters=Temperature";
+const QString web ="https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0";
+const QString reqtype ="request=getFeature";
+const QString query ="storedquery_id=fmi::forecast::harmonie::surface::point::multipointcoverage";
+const QString parameter ="parameters=Temperature";
+const QString place ="place=";
+const QString anding ="&";
+const QString tempQuery = web+anding+reqtype+anding+query;
+
+
 WeatherChartItem::WeatherChartItem(QQuickItem *parent=nullptr)
     :QQuickItem(parent)
 {
     m_pRenderer = std::make_unique<Renderer>(this);
-    m_pRenderer->setReqMsg(tem);
+//    m_pRenderer->setReqMsg(tem);
 
 }
 
 WeatherChartItem::WeatherChartItem(){
     m_pRenderer = std::make_unique<Renderer>(this);
-    m_pRenderer->setReqMsg(tem);
+
 }
 
 WeatherChartItem::~WeatherChartItem(){
@@ -87,46 +46,6 @@ WeatherChartItem::~WeatherChartItem(){
        qDebug()<<"m_pBackEndMgr is not nulllptr";
 }
 
-//QStringList WeatherChartItem::getTempertaure()
-//{
-//    return m_pMessage->getTemperatureMessage();
-//}
-
-//QStringList WeatherChartItem::getTime()
-//{
-//    return m_pMessage->getTimeMessage();
-//}
-
-//void WeatherChartItem::updateAxis()
-//{
-//    auto* pChartView = findChild<QObject*>("chartViewItem");
-//    if(pChartView == nullptr)
-//    {
-//        return;
-//    }
-//    QChartView* pChartItem = dynamic_cast<QChartView*>(pChartView);
-//    if(pChartItem == nullptr)
-//    {
-//        return;
-//    }
-////    pChartItem->set
-//    auto *xItem =pChartView->findChild<QObject*>("valueAxisXItem");
-//    if(xItem == nullptr)
-//    {
-//        return;
-//    }
-//    qDebug()<<"tru";
-////    pL->append(0, 6);
-//    //    pL->append(2, 4);
-//}
-
-//QDateTime WeatherChartItem::convert(QString n)
-//{
-//    qDebug()<<"n = "<< n;
-//    qDebug()<<"fromString = "<< QDateTime::fromString(n).time();
-//    return QDateTime::fromString(n);
-
-//}
 
 void WeatherChartItem::setData(std::shared_ptr<IMessage> pReplyMessage)
 {
@@ -172,6 +91,14 @@ void WeatherChartItem::update_chart(QQuickItem *item){
     }
 }
 
+void WeatherChartItem::sendReq(const QString &cityName)
+{
+    static QString tem;
+    tem= tempQuery +anding+ place+cityName+anding+parameter;
+    qDebug()<< "Req Msg::: "<<tem;
+    m_pRenderer->setReqMsg(tem);
+}
+
 void WeatherChartItem::update_axes(QAbstractAxis *pAxisx, QAbstractAxis *pAxisY)
 {
     if((nullptr == pAxisx ) || (nullptr == pAxisY)){
@@ -189,7 +116,7 @@ void WeatherChartItem::update_axes(QAbstractAxis *pAxisx, QAbstractAxis *pAxisY)
     if(m_pAxisX == nullptr)
     {
         m_pAxisX = dynamic_cast<QDateTimeAxis*>(pAxisx);
-        qDebug()<<"min time: "<<QDateTime::fromSecsSinceEpoch(m_timeData[0].toDouble())<<"string: "<<m_timeData[0].toDouble();
+        //qDebug()<<"min time: "<<QDateTime::fromSecsSinceEpoch(m_timeData[0].toDouble())<<"string: "<<m_timeData[0].toDouble();
 //        m_pAxisX->setMin(QDateTime::fromSecsSinceEpoch(m_timeData[0].toDouble()));
 //        m_pAxisX->setMax(QDateTime::fromSecsSinceEpoch(m_timeData[5].toDouble()));
         m_pAxisX->setTickCount(10);
@@ -197,7 +124,8 @@ void WeatherChartItem::update_axes(QAbstractAxis *pAxisx, QAbstractAxis *pAxisY)
     }
     if(m_pAxisY == nullptr)
     {
-        m_pAxisY = dynamic_cast<QCategoryAxis*>(pAxisY);
+        m_pAxisY = dynamic_cast<QValueAxis*>(pAxisY);
+        m_pAxisY->setTickCount(10);
     }
 }
 
@@ -241,14 +169,15 @@ void WeatherChartItem::updateYAxis(const int& temperature)
     auto min = m_pAxisY->min();
     if(temperature > max){
 //        qDebug()<<"data>max";
-        m_pAxisY->setMax(temperature);
-        m_pAxisY->setMin(min + (temperature-max));
+        m_pAxisY->setMax(temperature+1);
+//        if()
+        m_pAxisY->setMin(min + (temperature-max)-1);
         return;
     }
     if(temperature < min){
 //        qDebug()<<"data< min";
-        m_pAxisY->setMax(max-(min-temperature));
-        m_pAxisY->setMin(temperature);
+        m_pAxisY->setMax(max-(min-temperature)+1);
+        m_pAxisY->setMin(temperature-1);
     }
 }
 
@@ -287,10 +216,10 @@ void WeatherChartItem::updateData()
             dateAndTime = QDateTime::fromSecsSinceEpoch(dateTime[i].toDouble());
             qDebug()<<"append time: "<<dateAndTime.toMSecsSinceEpoch() << "temper "<< temlist[i].toDouble();
             pLineSeries->append(dateAndTime.toMSecsSinceEpoch(),temlist[i].toDouble());
+            updateYAxis(temlist[i].toDouble());
             if((0 == i) || (temlist.length()-1 == i))
             {
                 updateXAxis(dateAndTime);
-                updateYAxis(temlist[i].toDouble());
             }
 
         }
