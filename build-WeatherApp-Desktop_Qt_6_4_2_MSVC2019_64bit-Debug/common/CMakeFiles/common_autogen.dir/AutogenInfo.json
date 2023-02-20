@@ -1,0 +1,100 @@
+{
+	"BUILD_DIR" : "F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/common/common_autogen",
+	"CMAKE_BINARY_DIR" : "F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/common",
+	"CMAKE_CURRENT_SOURCE_DIR" : "F:/Qt/Git/Qt/WeatherApp/common",
+	"CMAKE_EXECUTABLE" : "C:/Qt/Tools/CMake_64/bin/cmake.exe",
+	"CMAKE_LIST_FILES" : [ "F:/Qt/Git/Qt/WeatherApp/common/CMakeLists.txt" ],
+	"CMAKE_SOURCE_DIR" : "F:/Qt/Git/Qt/WeatherApp",
+	"DEP_FILE" : "F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/common/common_autogen/deps",
+	"DEP_FILE_RULE_NAME" : "common_autogen/timestamp",
+	"HEADERS" : 
+	[
+		[
+			"F:/Qt/Git/Qt/WeatherApp/common/IMessage.h",
+			"Mu",
+			"EWIEGA46WW/moc_IMessage.cpp",
+			null
+		],
+		[
+			"F:/Qt/Git/Qt/WeatherApp/common/Message.h",
+			"Mu",
+			"EWIEGA46WW/moc_Message.cpp",
+			null
+		],
+		[
+			"F:/Qt/Git/Qt/WeatherApp/common/Utils.h",
+			"Mu",
+			"EWIEGA46WW/moc_Utils.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/common/common_autogen/include",
+	"MOC_COMPILATION_FILE" : "F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/common/common_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : 
+	[
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NETWORK_LIB",
+		"QT_OPENGL_LIB",
+		"QT_QMLINTEGRATION_LIB",
+		"QT_QMLMODELS_LIB",
+		"QT_QML_LIB",
+		"QT_QUICK_LIB",
+		"UNICODE",
+		"WIN32",
+		"WIN64",
+		"_ENABLE_EXTENDED_ALIGNED_STORAGE",
+		"_UNICODE",
+		"_WIN64"
+	],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"F:/Qt/Git/Qt/WeatherApp/common",
+		"C:/Qt/6.4.2/msvc2019_64/include/QtCore",
+		"C:/Qt/6.4.2/msvc2019_64/include",
+		"C:/Qt/6.4.2/msvc2019_64/mkspecs/win32-msvc",
+		"C:/Qt/6.4.2/msvc2019_64/include/QtQuick",
+		"C:/Qt/6.4.2/msvc2019_64/include/QtGui",
+		"C:/Qt/6.4.2/msvc2019_64/include/QtQml",
+		"C:/Qt/6.4.2/msvc2019_64/include/QtQmlIntegration",
+		"C:/Qt/6.4.2/msvc2019_64/include/QtNetwork",
+		"C:/Qt/6.4.2/msvc2019_64/include/QtQmlModels",
+		"C:/Qt/6.4.2/msvc2019_64/include/QtOpenGL"
+	],
+	"MOC_MACRO_NAMES" : 
+	[
+		"Q_OBJECT",
+		"Q_GADGET",
+		"Q_GADGET_EXPORT",
+		"Q_NAMESPACE",
+		"Q_NAMESPACE_EXPORT"
+	],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : [],
+	"MOC_PREDEFS_FILE" : "",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 4,
+	"PARSE_CACHE_FILE" : "F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/common/CMakeFiles/common_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "C:/Qt/6.4.2/msvc2019_64/./bin/moc.exe",
+	"QT_UIC_EXECUTABLE" : "",
+	"QT_VERSION_MAJOR" : 6,
+	"QT_VERSION_MINOR" : 4,
+	"SETTINGS_FILE" : "F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/common/CMakeFiles/common_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[ "F:/Qt/Git/Qt/WeatherApp/common/Message.cpp", "Mu", null ]
+	],
+	"VERBOSITY" : 0
+}

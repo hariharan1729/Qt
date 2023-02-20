@@ -1,0 +1,17 @@
+{
+    "classes": [
+        {
+            "className": "RequestMsgBuilder",
+            "object": true,
+            "qualifiedClassName": "RequestMsgBuilder",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "RequestMsgBuilder.h",
+    "outputRevision": 68
+}

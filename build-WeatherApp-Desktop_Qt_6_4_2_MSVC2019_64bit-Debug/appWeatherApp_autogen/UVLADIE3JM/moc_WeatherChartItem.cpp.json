@@ -1,0 +1,62 @@
+{
+    "classes": [
+        {
+            "classInfos": [
+                {
+                    "name": "QML.Element",
+                    "value": "auto"
+                }
+            ],
+            "className": "WeatherChartItem",
+            "methods": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "item",
+                            "type": "QQuickItem*"
+                        }
+                    ],
+                    "name": "update_chart",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "cityName",
+                            "type": "QString"
+                        }
+                    ],
+                    "name": "sendReq",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "axisX",
+                            "type": "QAbstractAxis*"
+                        },
+                        {
+                            "name": "axisY",
+                            "type": "QAbstractAxis*"
+                        }
+                    ],
+                    "name": "update_axes",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "WeatherChartItem",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QQuickItem"
+                }
+            ]
+        }
+    ],
+    "inputFile": "WeatherChartItem.h",
+    "outputRevision": 68
+}

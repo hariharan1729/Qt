@@ -1,0 +1,65 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"BackEnd/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 45,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 46,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "BackEnd-bin",
+			"paths" : 
+			[
+				"BackEnd/BackEnd.lib"
+			],
+			"targetId" : "BackEnd::@760e7483257fec3df5e9",
+			"targetIndex" : 0,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "BackEnd-include",
+			"paths" : 
+			[
+				"BackEnd/BackEnd.h",
+				"BackEnd/IRequestMessage.h",
+				"BackEnd/IResponse.h",
+				"BackEnd/IParser.h",
+				"BackEnd/Parser.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "BackEnd",
+		"source" : "BackEnd"
+	}
+}

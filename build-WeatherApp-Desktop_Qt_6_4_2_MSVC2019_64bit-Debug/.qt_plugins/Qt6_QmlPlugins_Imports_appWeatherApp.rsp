@@ -1,0 +1,14 @@
+-rootPath
+F:/Qt/Git/Qt/WeatherApp
+-cmake-output
+-output-file
+F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/.qt_plugins/Qt6_QmlPlugins_Imports_appWeatherApp.cmake
+-importPath
+F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/WeatherApp
+-importPath
+F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug
+-importPath
+C:/Qt/6.4.2/msvc2019_64/./qml
+-qrcFiles
+F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/.rcc/qmake_WeatherApp.qrc
+F:/Qt/Git/Qt/build-WeatherApp-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug/.rcc/appWeatherApp_raw_qml_0.qrc

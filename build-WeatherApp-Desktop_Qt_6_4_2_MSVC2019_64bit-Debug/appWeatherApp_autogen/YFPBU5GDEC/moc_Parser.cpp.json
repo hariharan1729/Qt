@@ -1,0 +1,21 @@
+{
+    "classes": [
+        {
+            "className": "Parser",
+            "object": true,
+            "qualifiedClassName": "Parser",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                },
+                {
+                    "access": "public",
+                    "name": "IParser"
+                }
+            ]
+        }
+    ],
+    "inputFile": "Parser.h",
+    "outputRevision": 68
+}

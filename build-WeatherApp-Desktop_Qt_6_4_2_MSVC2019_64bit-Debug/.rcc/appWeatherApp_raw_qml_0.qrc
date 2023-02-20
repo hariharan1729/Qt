@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="/WeatherApp/">
+    <file alias="qml/main.qml">F:/Qt/Git/Qt/WeatherApp/qml/main.qml</file>
+    <file alias="qml/WeatherchartView.qml">F:/Qt/Git/Qt/WeatherApp/qml/WeatherchartView.qml</file>
+    <file alias="qml/CustomComboBox.qml">F:/Qt/Git/Qt/WeatherApp/qml/CustomComboBox.qml</file>
+    <file alias="resources/images/wetaherImage.jpeg">F:/Qt/Git/Qt/WeatherApp/resources/images/wetaherImage.jpeg</file>
+    <file alias="resources/icon/drawer.png">F:/Qt/Git/Qt/WeatherApp/resources/icon/drawer.png</file>
+    <file alias="resources/icon/back.png">F:/Qt/Git/Qt/WeatherApp/resources/icon/back.png</file>
+  </qresource>
+</RCC>
+
