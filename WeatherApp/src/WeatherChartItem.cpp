@@ -1,4 +1,3 @@
-
 #include "WeatherChartItem.h"
 #include "IMessage.h"
 #include <memory>
