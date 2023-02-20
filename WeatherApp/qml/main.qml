@@ -90,7 +90,7 @@ Page {
             }
 
             Label {
-                text: "Qt Quick Controls provides a set of controls that can be used to build complete interfaces in Qt Quick."
+                text: "App provides the Weather informations for Diffrent cities in Finland"
                 anchors.margins: 20
                 anchors.top: logo.bottom
                 anchors.left: parent.left

@@ -66,7 +66,7 @@ Column{
             Component.onCompleted: {
                 view.legend.visible = false
                 customChartItem.update_chart(view)
-                customChartItem.update_axes(xaxis, yaxis)
+                customChartItem.initAxisesInfo(xaxis, yaxis)
 
             }
         }

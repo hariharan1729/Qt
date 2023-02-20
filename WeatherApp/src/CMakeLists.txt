@@ -15,8 +15,11 @@ target_sources(appWeatherApp
         Response.h
         Response.cpp
     PUBLIC
+        SeriesUpdateHandler.cpp
+        SeriesUpdateHandler.h
         WeatherChartItem.cpp
         WeatherChartItem.h
+
 )
 
 target_include_directories(appWeatherApp PUBLIC ${CMAKE_CURRENT_LIST_DIR})

@@ -4,47 +4,31 @@
 #include <QObject>
 #include <QQuickItem>
 #include "Renderer.h"
-#include <QAbstractAxis>
 #include <unordered_map>
-#include <QAbstractSeries>
 #include <QString>
+#include "SeriesUpdateHandler.h"
+#include <QAbstractAxis>
+
 
 class IMessage;
-class QAbstractAxis;
 class QChart;
-class QDateTimeAxis;
-class QValueAxis;
 
 class WeatherChartItem : public QQuickItem
 {
     Q_OBJECT
     QML_ELEMENT
 public:
-    WeatherChartItem(QQuickItem *parent);
-    WeatherChartItem();
-    ~WeatherChartItem();
-
-    Q_INVOKABLE void update_chart(QQuickItem *item);
+    WeatherChartItem(QQuickItem *parent = nullptr);
+    ~WeatherChartItem()override = default;
+    Q_INVOKABLE void update_chart(QQuickItem *pItem);
     Q_INVOKABLE void sendReq(const QString& cityName);
-    Q_INVOKABLE void update_axes(QAbstractAxis *axisX, QAbstractAxis *axisY);
-
-
+    Q_INVOKABLE void initAxisesInfo(QAbstractAxis *axisX, QAbstractAxis *axisY);
     void setData(std::shared_ptr<IMessage> pReplyMessage);
 
 private:
-    QChart* m_cv = nullptr;
-    QDateTimeAxis *m_pAxisX= nullptr;
-    QValueAxis  *m_pAxisY= nullptr;
-    int m_amountOfDXData =30;
+    QChart* m_pChart = nullptr;
     std::unique_ptr<Renderer> m_pRenderer = nullptr;
-    std::shared_ptr<IMessage> m_pMessage=nullptr;
-    std::unordered_map<QString,QAbstractSeries*> m_seriesMap;
+    SeriesUpdateHandler m_SeriesUpdateHandler;
 
-private:
-
-   void updateYAxis(const int &temperature);
-   void updateView();
-   void updateXAxis(const QDateTime &dateTime);
-   void updateData();
 };
 #endif

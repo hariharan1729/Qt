@@ -3,7 +3,6 @@ import QtQuick.Controls 2.13
 
 Row{
         width: parent.width
-//        height: 20
     Label {
         width: parent.width/2
         wrapMode: Label.Wrap
