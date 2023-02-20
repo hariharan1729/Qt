@@ -21,7 +21,7 @@ public:
     WeatherChartItem(QQuickItem *parent = nullptr);
     ~WeatherChartItem()override = default;
     Q_INVOKABLE void update_chart(QQuickItem *pItem);
-    Q_INVOKABLE void sendReq(const QString& cityName);
+    Q_INVOKABLE void sendReq(const QString& cityName, const QString &weatherParam);
     Q_INVOKABLE void initAxisesInfo(QAbstractAxis *axisX, QAbstractAxis *axisY);
     void setData(std::shared_ptr<IMessage> pReplyMessage);
 
