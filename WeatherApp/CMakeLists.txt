@@ -17,7 +17,7 @@ add_subdirectory(common)
 qt_add_qml_module(appWeatherApp
     URI WeatherApp
     VERSION 1.0
-    QML_FILES qml/main.qml qml/WeatherButton.qml qml/WeatherchartView.qml qml/CustomComboBox.qml
+    QML_FILES qml/main.qml qml/WeatherchartView.qml qml/CustomComboBox.qml
     RESOURCES
         "resources/images/wetaherImage.jpeg"
         "resources/icon/drawer.png"
