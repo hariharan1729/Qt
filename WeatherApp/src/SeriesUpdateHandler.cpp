@@ -46,44 +46,25 @@ void SeriesUpdateHandler::initSeries(QAbstractSeries *pSeries)
     }
     m_pSeries=pSeries;
 }
-void SeriesUpdateHandler::updateXAxis(const QDateTime& timeData)
+
+
+void SeriesUpdateHandler::updateXAxis(const QDateTime& startTime, const QDateTime& endTime)
 {
     if(m_pAxisX == nullptr){
-        return;
+        return ;
     }
-    qDebug()<<"new date time: "<<timeData;
-    auto max = m_pAxisX->max();
-    auto min = m_pAxisX->min();
-    qDebug()<<"max "<<max <<"  MIN"<<min;
-    if(timeData > max)
-    {
-        m_pAxisX->setMax(timeData);
-        m_pAxisX->setMin(QDateTime::currentDateTime());
-        return;
-    }
-    if(timeData < min){
-        m_pAxisX->setMax(max-(min-timeData));
-        m_pAxisX->setMin(timeData);
-    }
+    m_pAxisX->setMax(endTime);
+    m_pAxisX->setMin(startTime);
 }
 
-void SeriesUpdateHandler::updateYAxis(const int& temperature)
+void SeriesUpdateHandler::updateYAxis(const qreal& min, const qreal& max)
 {
-    if(m_pAxisY == nullptr){
-        return;
+    if(m_pAxisY == nullptr)
+    {
+           return;
     }
-    auto max = m_pAxisY->max();
-    auto min = m_pAxisY->min();
-    if(temperature > max){
-
-        m_pAxisY->setMax(temperature+1);
-        m_pAxisY->setMin(min + (temperature-max)-1);
-        return;
-    }
-    if(temperature < min){
-        m_pAxisY->setMax(max-(min-temperature)+1);
-        m_pAxisY->setMin(temperature-1);
-    }
+    m_pAxisY->setMax(max+1);
+    m_pAxisY->setMin(min-1);
 }
 
 void SeriesUpdateHandler::updateData(std::shared_ptr<IMessage> pMessage)
@@ -102,27 +83,27 @@ void SeriesUpdateHandler::updateData(std::shared_ptr<IMessage> pMessage)
     {
         return;
     }
-//    qDebug()<<"append "<<timeData.toMSecsSinceEpoch();
     auto dateTime = pMessage->getTimeMessage();
     auto temlist = pMessage->getTemperatureMessage();
-
+    pLineSeries->clear();
     if((dateTime.length() == temlist.length()) && (temlist.length()>0))
     {
         QDateTime dateAndTime;
+        qreal min =temlist[0].toDouble(), max = temlist[0].toDouble();
         for(int i=0;i<temlist.length();i++)
         {
             dateAndTime = QDateTime::fromSecsSinceEpoch(dateTime[i].toDouble());
+
             qDebug()<<"append time: "<<dateAndTime.toMSecsSinceEpoch() << "temper "<< temlist[i].toDouble();
             pLineSeries->append(dateAndTime.toMSecsSinceEpoch(),temlist[i].toDouble());
-            updateYAxis(temlist[i].toDouble());
-            if((0 == i) || (temlist.length()-1 == i))
-            {
-                updateXAxis(dateAndTime);
-            }
-
+            if(min > temlist[i].toDouble()) min = temlist[i].toDouble();
+            if(max < temlist[i].toDouble()) max = temlist[i].toDouble();
         }
+        updateYAxis(min, max);
+        QDateTime startTime = QDateTime::fromSecsSinceEpoch(dateTime[0].toDouble());
+        QDateTime endTime = QDateTime::fromSecsSinceEpoch(dateTime[temlist.length()-1].toDouble());
+        updateXAxis(startTime, endTime);
 
     }
-
 
 }

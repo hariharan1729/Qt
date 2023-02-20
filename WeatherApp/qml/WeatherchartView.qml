@@ -2,6 +2,7 @@ import QtCharts 2.4
 import WeatherChartItem 1.0
 import QtQuick 2.0
 import QtQuick.Controls 2.13
+import QtQuick.Layouts 1.1
 Column{
     id:columItem
     spacing: 5
@@ -21,12 +22,56 @@ Column{
             width:parent.width/2
             model: ["helsinki", "pori", "oulu"]
             onCurrentTextChanged: {
-                customChartItem.sendReq(currentText);
+                customChartItem.sendReq(currentText,btnGroup.checkedButton.text);
 
                 view.title = "Weather Info For the city:"+currentText;
             }
 
 
+        }
+    }
+    ButtonGroup {
+        id: btnGroup
+        buttons: buttonsRow.children
+        exclusive: true
+        onClicked:
+        {
+            customChartItem.sendReq(cityNames.currentText, checkedButton.text);
+        }
+    }
+    Row{
+        id: buttonsRow
+        spacing: 5
+        width: 320
+        height: 30
+        Button {
+            id: tempBtn
+            text: qsTr("Temperature")
+            x: 0
+            y:0
+            width: 100
+            height: 25
+            checkable: true
+            checked : true
+        }
+
+        Button {
+            x: 110
+            y:0
+            width: 100
+            height: 25
+            id: windBtn
+            text: qsTr("Humidity")
+            checkable: true
+        }
+        Button {
+            x: 220
+            y:0
+            width: 100
+            height: 25
+            id: pressureBtn
+            text: qsTr("Pressure")
+            checkable: true
         }
     }
     WeatherChartItem

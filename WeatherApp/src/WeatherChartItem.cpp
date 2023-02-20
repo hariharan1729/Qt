@@ -11,7 +11,7 @@
 const QString web ="https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0";
 const QString reqtype ="request=getFeature";
 const QString query ="storedquery_id=fmi::forecast::harmonie::surface::point::multipointcoverage";
-const QString parameter ="parameters=Temperature";
+const QString parameter ="parameters=";
 const QString place ="place=";
 const QString anding ="&";
 const QString tempQuery = web+anding+reqtype+anding+query;
@@ -56,7 +56,7 @@ void WeatherChartItem::update_chart(QQuickItem *pItem)
         QLinearGradient backgroundGradient;
         backgroundGradient.setStart(QPointF(0, 0));
         backgroundGradient.setFinalStop(QPointF(0, 1));
-        backgroundGradient.setColorAt(0.0, QRgb(0xd2d0d1));
+        backgroundGradient.setColorAt(0.0, QRgb(0xf2f2f2/*d2d0d1*/));
         backgroundGradient.setColorAt(1.0, QRgb(0x4c4547));
         backgroundGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
         pChart->setBackgroundBrush(backgroundGradient);
@@ -64,7 +64,7 @@ void WeatherChartItem::update_chart(QQuickItem *pItem)
         QLinearGradient plotAreaGradient;
         plotAreaGradient.setStart(QPointF(0, 1));
         plotAreaGradient.setFinalStop(QPointF(1, 0));
-        plotAreaGradient.setColorAt(0.0, QRgb(0x555555));
+        plotAreaGradient.setColorAt(0.0, QRgb(/*0x555555*/0xf2f2f2));
         plotAreaGradient.setColorAt(1.0, QRgb(0x55aa55));
         plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
         pChart->setPlotAreaBackgroundBrush(plotAreaGradient);
@@ -81,14 +81,15 @@ void WeatherChartItem::update_chart(QQuickItem *pItem)
     }
 }
 
-void WeatherChartItem::sendReq(const QString &cityName)
+void WeatherChartItem::sendReq(const QString &cityName, const QString &weatherParam)
 {
     if(nullptr == m_pRenderer)
     {
         return;
     }
+
     static QString tem;
-    tem= tempQuery +anding+ place+cityName+anding+parameter;
+    tem= tempQuery + anding + place + cityName + anding + parameter + weatherParam;
     qDebug()<< "Req Msg::: "<<tem;
     m_pRenderer->setReqMsg(tem);
 }

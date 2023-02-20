@@ -26,8 +26,8 @@ public:
     void updateData(std::shared_ptr<IMessage> pMessage);
 private:
 
-   void updateYAxis(const int &temperature);
-   void updateXAxis(const QDateTime &dateTime);
+   void updateYAxis(const qreal &min, const qreal &max);
+   void updateXAxis(const QDateTime& startTime, const QDateTime& endTime);
 
 private:
    QDateTimeAxis *m_pAxisX= nullptr;
