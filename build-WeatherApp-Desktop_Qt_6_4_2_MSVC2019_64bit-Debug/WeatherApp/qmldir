@@ -1,6 +1,0 @@
-module WeatherApp
-typeinfo appWeatherApp.qmltypes
-prefer :/WeatherApp/
-WeatherchartView 1.0 qml/WeatherchartView.qml
-CustomComboBox 1.0 qml/CustomComboBox.qml
-
