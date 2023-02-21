@@ -1,7 +1,5 @@
-
 #include "Renderer.h"
 #include <QLineSeries>
-#include "WeatherChartItem.h"
 #include <memory>
 #include "BackEnd.h"
 #include "Response.h"
@@ -9,11 +7,9 @@
 #include "IResponse.h"
 #include "ReqMsg.h"
 
-
-Renderer::Renderer(WeatherChartItem *pWeatherChartItem, QObject *parent)
-    :m_pWeatherChartItem(pWeatherChartItem)
+Renderer::Renderer(QObject *parent)
+    :QObject(parent)
 {
-
     m_pResponse = std::make_shared<Response>();
     m_pBackEnd = std::make_shared<BackEnd>(m_pResponse);
     QObject::connect(dynamic_cast<Response*>(m_pResponse.get()), SIGNAL(newDataRecieved(std::shared_ptr<IMessage>)),
@@ -32,8 +28,15 @@ void Renderer::setReqMsg(const QString &msg)
 void Renderer::OnnewDataRecieved(std::shared_ptr<IMessage> pReplyMessage)
 {
     qDebug()<<"Onee.............OnnewDataRecieved";
-    m_pWeatherChartItem->setData(pReplyMessage);
-    //emit m_pWeatherChartItem->newMessagePosted(pReplyMessage->getMsgType());
+    emit newMessagePosted(pReplyMessage);
+}
+
+void Renderer::sendReq(const QString &cityName, const QString &weatherParam)
+{
+    static QString tem;
+    tem= tempQuery + anding + place + cityName + anding + parameter + weatherParam;
+    qDebug()<< "Req Msg::: "<<tem;
+    setReqMsg(tem);
 }
 
 

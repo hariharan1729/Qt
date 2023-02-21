@@ -3,9 +3,8 @@
 
 
 #include <QObject>
+#include <QtGlobal>
 
-//#include "BackEnd.h"
-class WeatherChartItem;
 class BackEnd;
 class IResponse;
 class IMessage;
@@ -15,17 +14,21 @@ class Renderer : public QObject
     Q_OBJECT
 
 public:
-    Renderer(WeatherChartItem* pWeatherChartItem,QObject *parent = nullptr);
+    Renderer(QObject *parent = nullptr);
     ~Renderer();
     void setReqMsg(const QString& msg);
+     Q_INVOKABLE void sendReq(const QString& cityName, const QString &weatherParam);
 
 private:
-    WeatherChartItem* m_pWeatherChartItem =nullptr;
     std::shared_ptr<BackEnd> m_pBackEnd = nullptr;
     std::shared_ptr<IResponse> m_pResponse = nullptr;
 
 public slots:
     void OnnewDataRecieved(std::shared_ptr<IMessage> pReplyMessage);
+
+ signals:
+    void newMessagePosted(std::shared_ptr<IMessage> pReplyMessage);
+
 
 };
 #endif
