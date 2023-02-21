@@ -15,7 +15,7 @@ class Renderer : public QObject
 
 public:
     Renderer(QObject *parent = nullptr);
-    ~Renderer();
+    ~Renderer()override=default;
     void setReqMsg(const QString& msg);
 
 

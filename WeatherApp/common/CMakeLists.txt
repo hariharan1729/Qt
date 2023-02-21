@@ -9,6 +9,7 @@ set(INCLUDE_FILES
     Utils.h
     Message.h
     IMessage.h
+    Tracing.h
 )
 
 target_sources(common
