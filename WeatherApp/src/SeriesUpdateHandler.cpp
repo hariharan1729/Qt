@@ -6,6 +6,8 @@
 #include <QDateTimeAxis>
 #include <QAbstractAxis>
 
+std::unordered_map<QString,QString> SeriesUpdateHandler::m_parameterToUnit{{"Temperature","°C"},{"Humidity","%"},{"Pressure","hPa"}};
+
 SeriesUpdateHandler::SeriesUpdateHandler(QObject *parent)
     :QObject(parent)
 {
@@ -57,6 +59,26 @@ void SeriesUpdateHandler::updateXAxis(const QDateTime& startTime, const QDateTim
     m_pAxisX->setMin(startTime);
 }
 
+qreal SeriesUpdateHandler::max() const
+{
+    return m_max;
+}
+
+const QString &SeriesUpdateHandler::getUnitofTheParam(const QString &param)
+{
+    auto itr = m_parameterToUnit.find(param);
+    if(itr != m_parameterToUnit.end())
+    {
+        return itr->second;
+    }
+    return{};
+}
+
+qreal SeriesUpdateHandler::min() const
+{
+    return m_min;
+}
+
 void SeriesUpdateHandler::updateYAxis(const qreal& min, const qreal& max)
 {
     if(m_pAxisY == nullptr)
@@ -89,17 +111,17 @@ void SeriesUpdateHandler::updateData(std::shared_ptr<IMessage> pMessage)
     if((dateTime.length() == temlist.length()) && (temlist.length()>0))
     {
         QDateTime dateAndTime;
-        qreal min =temlist[0].toDouble(), max = temlist[0].toDouble();
+        m_min =temlist[0].toDouble(), m_max = temlist[0].toDouble();
         for(int i=0;i<temlist.length();i++)
         {
             dateAndTime = QDateTime::fromSecsSinceEpoch(dateTime[i].toDouble());
 
             qDebug()<<"append time: "<<dateAndTime.toMSecsSinceEpoch() << "temper "<< temlist[i].toDouble();
             pLineSeries->append(dateAndTime.toMSecsSinceEpoch(),temlist[i].toDouble());
-            if(min > temlist[i].toDouble()) min = temlist[i].toDouble();
-            if(max < temlist[i].toDouble()) max = temlist[i].toDouble();
+            if(m_min > temlist[i].toDouble()) m_min = temlist[i].toDouble();
+            if(m_max < temlist[i].toDouble()) m_max = temlist[i].toDouble();
         }
-        updateYAxis(min, max);
+        updateYAxis(m_min, m_max);
         QDateTime startTime = QDateTime::fromSecsSinceEpoch(dateTime[0].toDouble());
         QDateTime endTime = QDateTime::fromSecsSinceEpoch(dateTime[temlist.length()-1].toDouble());
         updateXAxis(startTime, endTime);

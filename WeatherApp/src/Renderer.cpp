@@ -31,12 +31,5 @@ void Renderer::OnnewDataRecieved(std::shared_ptr<IMessage> pReplyMessage)
     emit newMessagePosted(pReplyMessage);
 }
 
-void Renderer::sendReq(const QString &cityName, const QString &weatherParam)
-{
-    static QString tem;
-    tem= tempQuery + anding + place + cityName + anding + parameter + weatherParam;
-    qDebug()<< "Req Msg::: "<<tem;
-    setReqMsg(tem);
-}
 
 

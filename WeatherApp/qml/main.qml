@@ -4,7 +4,7 @@ import QtQuick.Layouts
 
 Page {
     width: 320
-    height: 480
+    height: 580
     visible: true
     id:window
     title: qsTr("Fmi weather forecast")

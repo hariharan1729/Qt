@@ -15,6 +15,7 @@ const QString parameter ="parameters=";
 const QString place ="place=";
 const QString anding ="&";
 const QString tempQuery = web+anding+reqtype+anding+query;
+const QString space = " ";
 
 
 WeatherChartItem::WeatherChartItem(QQuickItem *parent)
@@ -29,6 +30,10 @@ WeatherChartItem::WeatherChartItem(QQuickItem *parent)
 void WeatherChartItem::OnnewMessagePosted(std::shared_ptr<IMessage> pReplyMessage)
 {
     m_SeriesUpdateHandler.updateData(pReplyMessage);
+    auto max = getMax() + space +m_SeriesUpdateHandler.getUnitofTheParam(m_currParameter);
+
+    QMetaObject::invokeMethod(this, "updateMax",
+            Q_ARG(QString, max));
 }
 
 void WeatherChartItem::update_chart(QQuickItem *pItem)
@@ -89,7 +94,7 @@ void WeatherChartItem::sendReq(const QString &cityName, const QString &weatherPa
     {
         return;
     }
-
+    m_currParameter = weatherParam;
     static QString tem;
     tem= tempQuery + anding + place + cityName + anding + parameter + weatherParam;
     qDebug()<< "Req Msg::: "<<tem;
@@ -99,5 +104,15 @@ void WeatherChartItem::sendReq(const QString &cityName, const QString &weatherPa
 void WeatherChartItem::initAxisesInfo(QAbstractAxis *pAxisx, QAbstractAxis *pAxisY)
 {
     m_SeriesUpdateHandler.initAxisesInfo(pAxisx,pAxisY);
+}
+
+QString WeatherChartItem::getMax()
+{
+    return QString::number(m_SeriesUpdateHandler.max());
+}
+
+QString WeatherChartItem::getMin()
+{
+    return QString::number(m_SeriesUpdateHandler.min());
 }
 
