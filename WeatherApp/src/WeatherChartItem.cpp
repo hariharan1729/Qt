@@ -21,12 +21,14 @@ WeatherChartItem::WeatherChartItem(QQuickItem *parent)
     :QQuickItem(parent)
 {
     m_pRenderer = std::make_unique<Renderer>(this);
-
+    QObject::connect(dynamic_cast<Renderer*>(m_pRenderer.get()), SIGNAL(newMessagePosted(std::shared_ptr<IMessage>)),
+            this, SLOT(OnnewMessagePosted(std::shared_ptr<IMessage>)));
 }
 
-void WeatherChartItem::setData(std::shared_ptr<IMessage> pReplyMessage)
+
+void WeatherChartItem::OnnewMessagePosted(std::shared_ptr<IMessage> pReplyMessage)
 {
-   m_SeriesUpdateHandler.updateData(pReplyMessage);
+    m_SeriesUpdateHandler.updateData(pReplyMessage);
 }
 
 void WeatherChartItem::update_chart(QQuickItem *pItem)

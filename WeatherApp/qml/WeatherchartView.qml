@@ -23,7 +23,6 @@ Column{
             model: ["helsinki", "pori", "oulu"]
             onCurrentTextChanged: {
                 customChartItem.sendReq(currentText,btnGroup.checkedButton.text);
-
                 view.title = "Weather Info For the city:"+currentText;
             }
 
@@ -77,18 +76,16 @@ Column{
     WeatherChartItem
     {
         id:customChartItem
+        objectName: "customChart"
         width: columItem.width
         height: columItem.height -40
-        //y:0
         ChartView {
             id: view
             anchors.fill:  parent
-//            title: "Customchart example"
-            titleColor: "white"
+            titleColor: "black"
             titleFont.pixelSize: 18
             antialiasing: true
             LineSeries{
-                objectName: "tempLineSeries"
                 axisX: DateTimeAxis {
                     id: xaxis
                     labelsFont.pixelSize: 12

@@ -23,8 +23,8 @@ public:
     Q_INVOKABLE void update_chart(QQuickItem *pItem);
     Q_INVOKABLE void sendReq(const QString& cityName, const QString &weatherParam);
     Q_INVOKABLE void initAxisesInfo(QAbstractAxis *axisX, QAbstractAxis *axisY);
-    void setData(std::shared_ptr<IMessage> pReplyMessage);
-
+public slots:
+    void OnnewMessagePosted(std::shared_ptr<IMessage> pReplyMessage);
 private:
     QChart* m_pChart = nullptr;
     std::unique_ptr<Renderer> m_pRenderer = nullptr;
