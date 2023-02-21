@@ -6,6 +6,7 @@
 #include "Message.h"
 #include "IResponse.h"
 #include "ReqMsg.h"
+#include "Tracing.h"
 
 Renderer::Renderer(QObject *parent)
     :QObject(parent)
@@ -16,7 +17,7 @@ Renderer::Renderer(QObject *parent)
             this, SLOT(OnnewDataRecieved(std::shared_ptr<IMessage>)));
 }
 
-Renderer::~Renderer(){qDebug()<<"Distructor";}
+
 
 void Renderer::setReqMsg(const QString &msg)
 {
@@ -27,7 +28,7 @@ void Renderer::setReqMsg(const QString &msg)
 
 void Renderer::OnnewDataRecieved(std::shared_ptr<IMessage> pReplyMessage)
 {
-    qDebug()<<"Onee.............OnnewDataRecieved";
+    Trace(TraceType::INFO,"OnnewDataRecieved");
     emit newMessagePosted(pReplyMessage);
 }
 

@@ -23,7 +23,7 @@ Column{
             model: ["helsinki", "pori", "oulu"]
             onCurrentTextChanged: {
                 customChartItem.sendReq(currentText,btnGroup.checkedButton.text);
-                view.title = "Weather Info For the city:"+currentText;
+                view.title = "Weather Info For the city: "+currentText;
             }
 
         }

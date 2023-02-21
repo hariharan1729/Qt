@@ -5,9 +5,9 @@
 #include <QtCharts>
 #include <QObject>
 #include "Message.h"
+#include "Tracing.h"
 
-//const QString tem = "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::multipointcoverage&place=helsinki&parameters=Temperature&starttime=2023-02-14T06:00:00Z&endtime=2023-02-15T11:00:00Z";
-//const QString tem = "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::multipointcoverage&place=helsinki&parameters=Temperature";
+
 const QString web ="https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0";
 const QString reqtype ="request=getFeature";
 const QString query ="storedquery_id=fmi::forecast::harmonie::surface::point::multipointcoverage";
@@ -31,7 +31,7 @@ void WeatherChartItem::OnnewMessagePosted(std::shared_ptr<IMessage> pReplyMessag
 {
     m_SeriesUpdateHandler.updateData(pReplyMessage);
     auto max = getMax() + space +m_SeriesUpdateHandler.getUnitofTheParam(m_currParameter);
-
+    Trace(TraceType::INFO,"mas]x data:"+max);
     QMetaObject::invokeMethod(this, "updateMax",
             Q_ARG(QString, max));
 }
@@ -40,12 +40,14 @@ void WeatherChartItem::update_chart(QQuickItem *pItem)
 {
     if(nullptr == pItem)
     {
+        Trace(TraceType::WARNING,"nullptr == pItem");
         return;
     }
     QGraphicsScene *pScene = pItem->findChild<QGraphicsScene *>();
 
     if(nullptr == pScene)
     {
+        Trace(TraceType::WARNING,"nullptr == pScene");
         return;
     }
     for(QGraphicsItem *it : pScene->items())
@@ -53,10 +55,12 @@ void WeatherChartItem::update_chart(QQuickItem *pItem)
         QChart *pChart = dynamic_cast<QChart *>(it);
         if(nullptr == pChart)
         {
+            Trace(TraceType::WARNING,"nullptr == pChart");
             continue;
         }
         if(nullptr == m_pChart)
         {
+            Trace(TraceType::INFO,"m_pChart is initialised");
             m_pChart = pChart;
         }
         // Customize chart background
@@ -92,12 +96,13 @@ void WeatherChartItem::sendReq(const QString &cityName, const QString &weatherPa
 {
     if(nullptr == m_pRenderer)
     {
+        Trace(TraceType::WARNING,"nullptr == m_pRenderer");
         return;
     }
     m_currParameter = weatherParam;
     static QString tem;
     tem= tempQuery + anding + place + cityName + anding + parameter + weatherParam;
-    qDebug()<< "Req Msg::: "<<tem;
+    Trace(TraceType::INFO,"req Message:"+tem);
     m_pRenderer->setReqMsg(tem);
 }
 

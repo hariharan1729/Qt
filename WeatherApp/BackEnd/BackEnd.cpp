@@ -6,7 +6,7 @@
 #include "Parser.h"
 #include <QString>
 #include <memory>
-//#include ""
+#include "Tracing.h"
 
 
 BackEnd::BackEnd(std::shared_ptr<IResponse> pResponse, QObject *parent)
@@ -17,16 +17,19 @@ BackEnd::BackEnd(std::shared_ptr<IResponse> pResponse, QObject *parent)
     m_pResponseMessage = pResponse;
 }
 
-void BackEnd::handleNetworkData(QNetworkReply *pNetworkReply) {
+void BackEnd::handleNetworkData(QNetworkReply *pNetworkReply)
+{
     if(nullptr == pNetworkReply)
     {
+        Trace(TraceType::WARNING,"nullptr == pNetworkReply");
         return;
     }
+    Trace(TraceType::INFO,"handleNetworkData");
     auto e = pNetworkReply->error();
     if (!e)
         digest(QString::fromUtf8(pNetworkReply->readAll()));
     else
-        qDebug()<<"networkReply Error: "<< e;
+        Trace(TraceType::WARNING,"NetworkReply Error: "+e);
     pNetworkReply->deleteLater();
 }
 
