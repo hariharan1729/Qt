@@ -24,6 +24,12 @@ public:
     void initAxisesInfo(QAbstractAxis *pAxisx, QAbstractAxis *pAxisY);
     void initSeries(QAbstractSeries* pSeries);
     void updateData(std::shared_ptr<IMessage> pMessage);
+    qreal min() const;
+
+    qreal max() const;
+
+    const QString& getUnitofTheParam(const QString& param);
+
 private:
 
    void updateYAxis(const qreal &min, const qreal &max);
@@ -33,6 +39,10 @@ private:
    QDateTimeAxis *m_pAxisX= nullptr;
     QValueAxis  *m_pAxisY= nullptr;
     QAbstractSeries* m_pSeries = nullptr;
+    qreal m_min =0;
+    qreal m_max =0;
+
+    static std::unordered_map<QString,QString> m_parameterToUnit;
 
 };
 #endif

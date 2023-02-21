@@ -5,7 +5,7 @@ import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.1
 Column{
     id:columItem
-    spacing: 5
+    spacing: 1
     width: 320
     height: 480
     Row{
@@ -26,8 +26,15 @@ Column{
                 view.title = "Weather Info For the city:"+currentText;
             }
 
-
         }
+    }
+    Label {
+        id:maxTem
+        property string maxData
+        width: parent.width/2
+        wrapMode: Label.Wrap
+        horizontalAlignment: Qt.AlignHCenter
+        text: qsTr("Max") + qsTr(btnGroup.checkedButton.text)+ qsTr(" : ") + qsTr(maxData)
     }
     ButtonGroup {
         id: btnGroup
@@ -42,14 +49,14 @@ Column{
         id: buttonsRow
         spacing: 5
         width: 320
-        height: 30
+        height: 20
         Button {
             id: tempBtn
             text: qsTr("Temperature")
             x: 0
             y:0
             width: 100
-            height: 25
+            height: 20
             checkable: true
             checked : true
         }
@@ -58,7 +65,7 @@ Column{
             x: 110
             y:0
             width: 100
-            height: 25
+            height: 20
             id: windBtn
             text: qsTr("Humidity")
             checkable: true
@@ -67,7 +74,7 @@ Column{
             x: 220
             y:0
             width: 100
-            height: 25
+            height: 20
             id: pressureBtn
             text: qsTr("Pressure")
             checkable: true
@@ -76,9 +83,13 @@ Column{
     WeatherChartItem
     {
         id:customChartItem
-        objectName: "customChart"
         width: columItem.width
         height: columItem.height -40
+
+        function updateMax(max: string) {
+
+            maxTem.maxData =  max;
+        }
         ChartView {
             id: view
             anchors.fill:  parent
@@ -112,6 +123,7 @@ Column{
 
             }
         }
+
     }
 }
 

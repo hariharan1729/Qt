@@ -17,7 +17,7 @@ public:
     Renderer(QObject *parent = nullptr);
     ~Renderer();
     void setReqMsg(const QString& msg);
-     Q_INVOKABLE void sendReq(const QString& cityName, const QString &weatherParam);
+
 
 private:
     std::shared_ptr<BackEnd> m_pBackEnd = nullptr;
